@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const countryRouter = require("./routes/country");
 const placeRouter = require("./routes/place");
+const hotelRouter = require('./routes/hotel');
 const port = 5003
 
 
@@ -24,6 +25,7 @@ app.use('/api/', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/countries', countryRouter);
 app.use('/api/places', placeRouter);
+app.use('/api/hotels', hotelRouter);
 
 
 app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT }!`))

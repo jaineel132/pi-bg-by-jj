@@ -23,7 +23,7 @@ module.exports = {
 
     },
 
-    addPlacesToCountry: async (req, res, next) => {
+    addPlacesToCountry: async (req, res, next) => { //to add and remove provide id`s
         const {countryId, placeId} = req.body;
 
         try {

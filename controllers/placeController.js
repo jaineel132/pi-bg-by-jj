@@ -31,7 +31,10 @@ module.exports = {
         try {
 
             const places = await Place.find({}, '_id review rating imageUrl title country_id')
-
+            .populate({
+                path: 'popular',
+                select: 'title rating review imageUrl location'
+            });
             res.status(200).json({ places })
 
         } catch (error) {
@@ -45,7 +48,10 @@ module.exports = {
         try {
 
             const place = await Place.findById(placeId, {createdAt: 0, updatedAt: 0, __v: 0})
-
+            .populate({
+                path: 'popular',
+                select: 'title rating review imageUrl location'
+            });
             res.status(200).json({ place })
 
         } catch (error) {
@@ -69,5 +75,28 @@ module.exports = {
             return next(error)
         }
     },
+
+    Search: async (req, res, next) =>{
+        try {
+            const results = await Place.aggregate(
+                [
+                    {
+                      $search: {
+                        index: "places",
+                        text: {
+                          query: req.params.key,
+                          path: {
+                            wildcard: "*"
+                          }
+                        }
+                      }
+                    }
+                  ]
+            )
+            res.status(200).json(results)
+        } catch (error) {
+            return next(error)
+        }
+    }
 
 }
