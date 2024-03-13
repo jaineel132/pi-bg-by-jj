@@ -8,6 +8,8 @@ const userRouter = require("./routes/user");
 const countryRouter = require("./routes/country");
 const placeRouter = require("./routes/place");
 const hotelRouter = require('./routes/hotel');
+const reviewRouter = require('./routes/review');
+
 const port = 5003
 
 
@@ -26,6 +28,8 @@ app.use('/api/users', userRouter);
 app.use('/api/countries', countryRouter);
 app.use('/api/places', placeRouter);
 app.use('/api/hotels', hotelRouter);
+app.use('/api/reviews', reviewRouter);
+
 
 
 app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT }!`))
