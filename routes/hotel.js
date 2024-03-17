@@ -5,6 +5,7 @@ const {verifyToken} = require("../middleware/jwt_token")
 router.post('/',verifyToken, hotelController.addHotel)
 router.get('/:id', hotelController.getHotelById)
 router.get('/byCountry/:id', hotelController.getHotelsByCountry)
+router.get('/',hotelController.getHotels)   
 
 module.exports = router;
 

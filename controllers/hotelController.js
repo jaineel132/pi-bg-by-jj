@@ -84,5 +84,18 @@ module.exports={
         } catch (error) {
             return   next(error);
         }
+    },
+
+    getHotels: async (req,res,next) =>{
+
+        try {
+
+            const hotels = await Hotel.find({})
+
+            res.status(200).json({hotels})
+
+        } catch (error) {
+            return next(error)
+        }
     }
 }
